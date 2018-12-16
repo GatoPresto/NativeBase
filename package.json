@@ -26,7 +26,7 @@
       "node_modules/(?!react-native|@shoutem|react-clone-referenced-element|native-base-shoutem-theme)"
     ]
   },
-  "version": "2.8.1",
+  "version": "2.8.2",
   "license": "Apache-2.0",
   "private": false,
   "dependencies": {
@@ -36,7 +36,7 @@
     "fs-extra": "^2.0.0",
     "jest-react-native": "^18.0.0",
     "lodash": "4.17.10",
-    "native-base-shoutem-theme": "0.2.2",
+    "native-base-shoutem-theme": "https://github.com/GatoPresto/theme.git",
     "print-message": "^2.1.0",
     "prop-types": "^15.5.10",
     "react-native-drawer": "2.5.0",
