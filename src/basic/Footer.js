@@ -97,7 +97,8 @@ class Footer extends Component {
               this.state.orientation,
               variables.Inset
             )
-          }
+          },
+          this.props.additionalStyle
         ]}
       />
     ) : (
@@ -112,7 +113,8 @@ Footer.propTypes = {
     PropTypes.object,
     PropTypes.number,
     PropTypes.array
-  ])
+  ]),
+  additionalStyle: PropTypes.object
 };
 
 const StyledFooter = connectStyle(
