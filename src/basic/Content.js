@@ -91,37 +91,7 @@ class Content extends Component {
     const variables = this.context.theme
       ? this.context.theme["@@shoutem.theme/themeStyle"].variables
       : variable;
-    return variable.isIphoneX ? (
-      <KeyboardAwareScrollView
-        automaticallyAdjustContentInsets={false}
-        resetScrollToCoords={
-          this.props.disableKBDismissScroll ? null : { x: 0, y: 0 }
-        }
-        keyboardShouldPersistTaps={
-          this.props.keyboardShouldPersistTaps
-            ? this.props.keyboardShouldPersistTaps
-            : "handled"
-        }
-        ref={c => {
-          this._scrollview = c;
-          this._root = c;
-		}}
-        {...this.props}
-        onLayout={e => this.layoutChange(e.nativeEvent.layout)}
-        style={[
-          this.props.style,
-          {
-            paddingLeft: this.calculateLeft(
-              this.state.orientation,
-              variables.Inset
-            )
-          }
-		]}
-		contentContainerStyle={[{ padding: this.props.padder ? variables.contentPadding : undefined }, this.props.contentContainerStyle]}
-      >
-        {this.props.children}
-      </KeyboardAwareScrollView>
-    ) : (
+    return variables.isIphoneX ? (
       <KeyboardAwareScrollView
         automaticallyAdjustContentInsets={false}
         resetScrollToCoords={
@@ -136,12 +106,43 @@ class Content extends Component {
           this._scrollview = c;
           this._root = c;
         }}
-		{...this.props}
-		contentContainerStyle={[{ padding: this.props.padder ? variables.contentPadding : undefined }, this.props.contentContainerStyle]}
+        {...this.props}
+        onLayout={e => this.layoutChange(e.nativeEvent.layout)}
+        style={[
+          this.props.style,
+          {
+            paddingLeft: this.calculateLeft(
+              this.state.orientation,
+              variables.Inset
+            ),
+            paddingRight: this.calculateRight(this.state.orientation, variables.Inset)
+          }
+        ]}
+        contentContainerStyle={[{ padding: this.props.padder ? variables.contentPadding : undefined }, this.props.contentContainerStyle]}
       >
         {this.props.children}
       </KeyboardAwareScrollView>
-    );
+    ) : (
+        <KeyboardAwareScrollView
+          automaticallyAdjustContentInsets={false}
+          resetScrollToCoords={
+            this.props.disableKBDismissScroll ? null : { x: 0, y: 0 }
+          }
+          keyboardShouldPersistTaps={
+            this.props.keyboardShouldPersistTaps
+              ? this.props.keyboardShouldPersistTaps
+              : "handled"
+          }
+          ref={c => {
+            this._scrollview = c;
+            this._root = c;
+          }}
+          {...this.props}
+          contentContainerStyle={[{ padding: this.props.padder ? variables.contentPadding : undefined }, this.props.contentContainerStyle]}
+        >
+          {this.props.children}
+        </KeyboardAwareScrollView>
+      );
   }
 }
 
